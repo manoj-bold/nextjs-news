@@ -9,7 +9,7 @@ export default function MainHeader() {
       </div>
       <nav>
         <ul>
-          <NavLink href="/">Home</NavLink>
+          <NavLink href="/news">News</NavLink>
           <NavLink href="/archive">Archive</NavLink>
         </ul>
       </nav>

@@ -1,6 +1,5 @@
-"use client";
-
 import { DUMMY_NEWS } from "@/dummy-news";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 export default function NewsDetailPage({ params: { slug } }) {
@@ -13,10 +12,12 @@ export default function NewsDetailPage({ params: { slug } }) {
   return (
     <article className="news-article">
       <header>
-        <img
-          src={`/images/news/${selectedNews.image}`}
-          alt={selectedNews.title}
-        />
+        <Link href={`/news/${slug}/image`}>
+          <img
+            src={`/images/news/${selectedNews.image}`}
+            alt={selectedNews.title}
+          />
+        </Link>
         <h1>{selectedNews.title}</h1>
         <time dateTime={selectedNews.date}>{selectedNews.date}</time>
       </header>
