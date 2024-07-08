@@ -21,6 +21,12 @@ export default function FilteredNewsPage({ params: { filter } }) {
       </li>
     ));
   } else {
+    if (
+      (year && !getAvailableNewsYears().includes(+year)) ||
+      (month && !getAvailableNewsMonths(year).includes(+month))
+    ) {
+      throw new Error("Invalid filter.");
+    }
     const months = getAvailableNewsMonths(year);
     links = months.map((month) => (
       <li key={month}>
