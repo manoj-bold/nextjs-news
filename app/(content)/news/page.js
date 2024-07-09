@@ -1,17 +1,17 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import NewsList from "@/components/news-list";
 
-export default function AllNewsPage() {
-  const [news, setNews] = useState([]);
+export default async function AllNewsPage() {
+  const response = await fetch("http://localhost:8080/news");
 
-  useEffect(() => {
-    fetch("http://localhost:8080/news")
-      .then((response) => response.json())
-      .then((data) => setNews(data))
-      .catch((error) => console.error(error));
-  }, []);
+  if (!response.ok) {
+    return <div>Failed to load news.</div>;
+  }
+
+  const news = await response.json();
+
+  if (!news || news.length === 0) {
+    return <div>No news found.</div>;
+  }
 
   return (
     <div id="news">
